@@ -1,9 +1,5 @@
 <template>
-  <div
-    class="item"
-    @mouseover="showBuyButton = true"
-    @mouseout="showBuyButton = false"
-  >
+  <div class="item" @mouseover="hovered = true" @mouseout="hovered = false">
     <picture><img :alt="title" :src="img_url" /></picture>
     <div class="info-top">
       <h3 class="title">{{ title }}</h3>
@@ -22,7 +18,9 @@
       <div class="price">
         <p>{{ price }}$</p>
       </div>
-      <button v-show="true" :class="{ addBtn: true, show: showBuyButton }" >Buy</button>
+      <button v-show="true" :class="{ addBtn: true, show: hovered }">
+        Buy
+      </button>
     </div>
   </div>
 </template>
@@ -49,7 +47,7 @@ export default {
   },
   data() {
     return {
-      showBuyButton: false,
+      hovered: false,
     };
   },
 };
@@ -60,6 +58,7 @@ export default {
   min-height: 510px;
   width: 300px;
   margin: 8px;
+  padding: 8px 0;
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -85,6 +84,7 @@ picture img {
 }
 .brand {
   margin: 8px;
+  color: grey;
 }
 .info-bottom {
   margin-top: auto;
@@ -115,22 +115,24 @@ picture img {
 
 .addBtn {
   position: absolute;
-  width: 300px;
+  width: 0px;
   font-size: 14px;
-  height: 3.5em;
-  margin-top: 6px;
+  height: 0;
   background-color: black;
   color: white;
-  border-radius: 4px;
   cursor: pointer;
-  z-index: 4;
   opacity: 0;
-  transform: translateY(100%);
+  z-index: 4;
+  transform: translateY(-100%);
   transition: opacity 0.5s, transform 0.5s;
 }
 .addBtn.show {
   opacity: 1;
   transform: translateY(0);
+  height: 3.5em;
+  width: 300px;
+  border-radius: 4px;
+  margin-top: 6px;
 }
 .addBtn:hover {
   opacity: 0.8;
