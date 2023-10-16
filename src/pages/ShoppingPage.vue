@@ -1,11 +1,15 @@
 <template>
-    <main>
-      <filters-box />
-      <div>
-        <sort-form :itemsAmount="items.length" :sortBy="sortBy" @updateSortBy="updateSortBy"/>
-        <shopping-list :items="items" />
-      </div>
-    </main>
+  <main>
+    <filters-box />
+    <div>
+      <sort-form
+        :itemsAmount="items.length"
+        :sortBy="sortBy"
+        @updateSortBy="updateSortBy"
+      />
+      <shopping-list :items="computedSortedItems" />
+    </div>
+  </main>
 </template>
 
 <script>
@@ -21,7 +25,7 @@ export default {
   },
   data() {
     return {
-      sortBy: 'rating-decline',
+      sortBy: "rating-decline",
       items: [
         {
           id: 1,
@@ -29,7 +33,7 @@ export default {
           title: "Calvin Klein CK One",
           brand: "Calvin Klein",
           price: 22.08,
-          rate: 4.9,
+          rating: 4.9,
           type: "Shower gel",
           age: "14+",
           purpose: ["Refreshing"],
@@ -44,7 +48,7 @@ export default {
           title: "Ultra-enriched cleansing gel for face and body",
           brand: "Topicrem",
           price: 13.85,
-          rate: 4.5,
+          rating: 4.5,
           type: "Cleansing Gel",
           age: "any",
           purpose: ["Moisturizing", "Cleansing"],
@@ -56,13 +60,24 @@ export default {
         {
           id: 3,
           img_url: "https://u.makeup.com.ua/t/t0/t0o5ipb5azbi.jpg",
-          title: "Ultra-nourishing and moisturizing scrub with coconut and chia seeds",
+          title:
+            "Ultra-nourishing and moisturizing scrub with coconut and chia seeds",
           brand: "LUF",
           price: 10.87,
-          rate: 4.5,
+          rating: 4.5,
           type: "Scrub",
           age: "any",
-          purpose: ["Moisturizing", "Anti-cellulite", "Recovery", "From stretch marks", "For pregnant women", "For radiance", "Nutrition", "Lifting", "Softening"],
+          purpose: [
+            "Moisturizing",
+            "Anti-cellulite",
+            "Recovery",
+            "From stretch marks",
+            "For pregnant women",
+            "For radiance",
+            "Nutrition",
+            "Lifting",
+            "Softening",
+          ],
           ingredients: ["Coconut", "Chia seeds"],
           timeOfApplication: "Unique",
           sex: "For women",
@@ -71,10 +86,10 @@ export default {
         {
           id: 4,
           img_url: "https://u.makeup.com.ua/4/4a/4amkaayddbcz.jpg",
-          title: "Geyser bath bomb \"Orange\"",
+          title: 'Geyser bath bomb "Orange"',
           brand: "TINK",
-          price: 2.80,
-          rate: 4.1,
+          price: 2.8,
+          rating: 4.1,
           type: "Bath bomb",
           age: "any",
           purpose: ["Moisturizing", "Relaxing", "Cleansing"],
@@ -89,7 +104,7 @@ export default {
           title: "Cream shower gel",
           brand: "Pharmaceris",
           price: 14.85,
-          rate: 4.5,
+          rating: 4.5,
           type: "Shower gel",
           age: "any",
           purpose: ["Refreshing", "Moisturizing", "Nutrition"],
@@ -102,11 +117,97 @@ export default {
     };
   },
   methods: {
-    updateSortBy(new_value){
+    updateSortBy(new_value) {
       this.sortBy = new_value;
-    }
-  }
-}
+    },
+  },
+  computed: {
+    computedSortedItems() {
+      switch (this.sortBy) {
+        case "name-growth":
+          return this.items.sort((a, b) => {
+            const titleA = a.title.toUpperCase();
+            const titleB = b.title.toUpperCase();
+
+            if (titleA < titleB) {
+              return -1;
+            }
+            if (titleA > titleB) {
+              return 1;
+            }
+            return 0;
+          });
+        case "name-decline":
+          return this.items.sort((a, b) => {
+            const titleA = a.title.toUpperCase();
+            const titleB = b.title.toUpperCase();
+
+            if (titleA < titleB) {
+              return 1;
+            }
+            if (titleA > titleB) {
+              return -1;
+            }
+            return 0;
+          });
+        case "price-growth":
+          return this.items.sort((a, b) => {
+            const priceA = a.price;
+            const priceB = b.price;
+
+            if (priceA < priceB) {
+              return -1;
+            }
+            if (priceA > priceB) {
+              return 1;
+            }
+            return 0;
+          });
+        case "price-decline":
+          return this.items.sort((a, b) => {
+            const priceA = a.price;
+            const priceB = b.price;
+
+            if (priceA < priceB) {
+              return 1;
+            }
+            if (priceA > priceB) {
+              return -1;
+            }
+            return 0;
+          });
+        case "rating-growth":
+          return this.items.sort((a, b) => {
+            const ratingA = a.rating;
+            const ratingB = b.rating;
+
+            if (ratingA < ratingB) {
+              return -1;
+            }
+            if (ratingA > ratingB) {
+              return 1;
+            }
+            return 0;
+          });
+        case "rating-decline":
+          return this.items.sort((a, b) => {
+            const ratingA = a.rating;
+            const ratingB = b.rating;
+
+            if (ratingA < ratingB) {
+              return 1;
+            }
+            if (ratingA > ratingB) {
+              return -1;
+            }
+            return 0;
+          });
+        default:
+          return this.items;
+      }
+    },
+  },
+};
 </script>
 
 <style scoped></style>
