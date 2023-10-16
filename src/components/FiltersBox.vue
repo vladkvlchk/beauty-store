@@ -25,7 +25,24 @@ export default {
       filters: [
         {
           title: "Brand",
-          options: ["Calvin Klein", "Dove", "Mr.Scrubber"],
+          options: [
+            "Calvin Klein",
+            "Topicrem",
+            "LUF",
+            "TINK",
+            "Pharmaceris",
+            "DenTek",
+            "Missha",
+            "Estee Lauder",
+            "Etiaxil",
+            "Enough",
+            "La Roche-Posay",
+            "CeraVe",
+            "Amway",
+            "Relance",
+            "Lumene",
+            "Max Factor",
+          ],
         },
         {
           title: "Type",
