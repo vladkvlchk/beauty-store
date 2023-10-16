@@ -1,13 +1,16 @@
 <template>
   <main>
-    <filters-box />
+    <div>
+      <search-box @onChange="updateSearchQuery"/>
+      <filters-box />
+    </div>
     <div>
       <sort-form
-        :itemsAmount="items.length"
+        :itemsAmount="searchedItems.length"
         :sortBy="sortBy"
         @updateSortBy="updateSortBy"
       />
-      <shopping-list :items="computedSortedItems" />
+      <shopping-list :items="searchedItems" />
     </div>
   </main>
 </template>
@@ -16,16 +19,19 @@
 import ShoppingList from "@/components/ShoppingList";
 import FiltersBox from "@/components/FiltersBox";
 import SortForm from "@/components/SortForm";
+import SearchBox from "@/components/SearchBox";
 
 export default {
   components: {
     ShoppingList,
     FiltersBox,
     SortForm,
+    SearchBox,
   },
   data() {
     return {
       sortBy: "rating-decline",
+      searchQuery: '',
       items: [
         {
           id: 1,
@@ -120,9 +126,12 @@ export default {
     updateSortBy(new_value) {
       this.sortBy = new_value;
     },
+    updateSearchQuery(new_value) {
+      this.searchQuery = new_value;
+    }
   },
   computed: {
-    computedSortedItems() {
+    sortedItems() {
       switch (this.sortBy) {
         case "name-growth":
           return this.items.sort((a, b) => {
@@ -206,6 +215,9 @@ export default {
           return this.items;
       }
     },
+    searchedItems(){
+      return this.items.filter(item => item.title.toUpperCase().includes(this.searchQuery.toUpperCase()));
+    }
   },
 };
 </script>

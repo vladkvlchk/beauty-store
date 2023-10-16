@@ -1,7 +1,7 @@
 <template>
   <form>
     <div class="itemsAmount">{{ itemsAmount }} products</div>
-    <div class="sort">
+    <div v-if="itemsAmount > 2" class="sort">
       Sorted by:
       <select v-model="selectedOption" @change="emitValueChange">
         <option value="name-growth">name A-Z</option>
@@ -46,6 +46,7 @@ form {
   display: flex;
   justify-content: space-between;
   padding: 0 24px;
+  width: 100%;
 }
 .itemsAmount {
   color: grey;
