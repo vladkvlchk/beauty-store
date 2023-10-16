@@ -1,14 +1,15 @@
 <template>
   <form>
-    <div class="itemsAmount">{{ itemsAmount }}</div>
-    <div class="sortedBy">
-      sorted by:
-      <select>
-        <option>name A-Z</option>
-        <option>name Z-A</option>
-        <option>price lower-higher</option>
-        <option>price ↓</option>
-        <option>popularity ↑</option>
+    <div class="itemsAmount">{{ itemsAmount }} products</div>
+    <div class="sort">
+      Sorted by:
+      <select v-model="selectedOption" @change="emitValueChange">
+        <option value="name-growth">name A-Z</option>
+        <option value="name-decline">name Z-A</option>
+        <option value="price-growth">price ↑</option>
+        <option value="price-decline">price ↓</option>
+        <option value="rating-growth">rating ↑</option>
+        <option value="rating-decline">rating ↓</option>
       </select>
     </div>
   </form>
@@ -16,18 +17,44 @@
 
 <script>
 export default {
-    props: {
-        itemsAmount: {
-            type: [Number, String],
-            required: true,
-        },
+  props: {
+    itemsAmount: {
+      type: [Number, String],
+      required: true,
     },
-    data(){
-        return {
-
-        }
-    }
-}
+    sortBy: {
+      type: String,
+      required: true,
+    },
+  },
+  data() {
+    return {
+      selectedOption: this.sortBy,
+    };
+  },
+  methods: {
+    emitValueChange() {
+      this.$emit("updateSortBy", this.selectedOption);
+    },
+  },
+};
 </script>
 
-<style scoped></style>
+<style scoped>
+form {
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 24px;
+}
+.itemsAmount {
+  color: grey;
+}
+.sort {
+  color: grey;
+}
+select {
+  border: 0;
+  font-weight: bold;
+}
+</style>

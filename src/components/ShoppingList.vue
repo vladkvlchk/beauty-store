@@ -26,11 +26,6 @@ export default {
   data() {
     return {
     };
-  },
-  methods: {
-    openBuyBtn(e){
-      console.log(e)
-    }
   }
 };
 </script>

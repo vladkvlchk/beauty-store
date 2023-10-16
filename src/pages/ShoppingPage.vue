@@ -2,7 +2,7 @@
     <main>
       <filters-box />
       <div>
-        <sort-form :itemsAmount="items.length"/>
+        <sort-form :itemsAmount="items.length" :sortBy="sortBy" @updateSortBy="updateSortBy"/>
         <shopping-list :items="items" />
       </div>
     </main>
@@ -21,6 +21,7 @@ export default {
   },
   data() {
     return {
+      sortBy: 'rating-decline',
       items: [
         {
           id: 1,
@@ -100,6 +101,11 @@ export default {
       ],
     };
   },
+  methods: {
+    updateSortBy(new_value){
+      this.sortBy = new_value;
+    }
+  }
 }
 </script>
 
