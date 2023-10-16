@@ -124,7 +124,7 @@ picture img {
   opacity: 0;
   z-index: 4;
   transform: translateY(-100%);
-  transition: opacity 0.5s, transform 0.5s;
+  transition: opacity 0.4s, transform 0.3s;
 }
 .addBtn.show {
   opacity: 1;
