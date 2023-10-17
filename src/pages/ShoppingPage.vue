@@ -467,4 +467,8 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+main {
+  padding-bottom: 240px;
+}
+</style>

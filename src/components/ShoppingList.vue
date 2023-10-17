@@ -8,14 +8,17 @@
         :price="item.price"
       />
     </div>
+    <pagination-box />
   </div>
 </template>
 <script>
-import ShoppingItem from "@/components/ShoppingItem"
+import ShoppingItem from "@/components/ShoppingItem";
+import PaginationBox from "@/components/PaginationBox";
 
 export default {
   components: {
     ShoppingItem,
+    PaginationBox,
   },
   props: {
     items: {
@@ -24,9 +27,8 @@ export default {
     },
   },
   data() {
-    return {
-    };
-  }
+    return {};
+  },
 };
 </script>
 <style scoped>
@@ -39,7 +41,6 @@ export default {
   position: relative;
   overflow: scroll;
   flex-wrap: wrap;
-  padding-bottom: 240px;
+  width: auto;
 }
-
 </style>
