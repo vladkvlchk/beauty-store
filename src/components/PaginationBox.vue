@@ -32,12 +32,24 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+}
+.button-more:hover{
+    border: 1px solid #65256F;
+    color: #65256F;
 }
 ul {
   list-style: none;
   display: flex;
+  margin-top: 24px;
 }
 li {
-  margin: 0.5em;
+  margin: 0.7em;
+  cursor: pointer;
+  transition: color 0.2s;
+  font-weight: 900;
+}
+li:hover {
+    color: #65256F;
 }
 </style>
