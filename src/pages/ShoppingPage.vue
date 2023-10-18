@@ -1,4 +1,5 @@
 <template>
+  <div class="title">_____________ Shopping Page _____________</div>
   <main>
     <div>
       <search-box @onChange="updateSearchQuery" />

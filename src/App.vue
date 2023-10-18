@@ -2,22 +2,28 @@
   <div>
     <header>
       <h1>🐰 cute store 🐰</h1>
-      <nav><button id="shoppingCart">Shopping Cart</button></nav>
+      <nav>
+        <router-link to="/cart">
+          <button id="shoppingCart">Shopping Cart</button>
+        </router-link>
+      </nav>
     </header>
-    <div class="title">_____________ Cosmetics _____________</div>
-    <shopping-page />
+    <router-view>
+      <!-- <shopping-page /> -->
+      <!-- <cart-page /> -->
+    </router-view>
   </div>
 </template>
 
 <script>
-
 import ShoppingPage from "@/pages/ShoppingPage";
+import CartPage from "@/pages/CartPage"
 
 export default {
   components: {
     ShoppingPage,
+    CartPage,
   },
-  
 };
 </script>
 
@@ -26,7 +32,7 @@ export default {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Sarabun', sans-serif;
+  font-family: "Sarabun", sans-serif;
 }
 header {
   display: flex;
