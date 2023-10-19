@@ -1,6 +1,6 @@
 import ShoppingPage from "@/pages/ShoppingPage";
 import CartPage from "@/pages/CartPage";
-import { createWebHashHistory, createRouter } from "vue-router";
+import { createWebHistory, createRouter } from "vue-router";
 
 const routes = [
   {
@@ -15,7 +15,7 @@ const routes = [
 
 const router = createRouter({
   routes,
-  history: createWebHashHistory(),
+  history: createWebHistory(),
 });
 
 export default router;

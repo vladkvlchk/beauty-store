@@ -8,16 +8,13 @@
         </router-link>
       </nav>
     </header>
-    <router-view>
-      <!-- <shopping-page /> -->
-      <!-- <cart-page /> -->
-    </router-view>
+    <router-view> </router-view>
   </div>
 </template>
 
 <script>
 import ShoppingPage from "@/pages/ShoppingPage";
-import CartPage from "@/pages/CartPage"
+import CartPage from "@/pages/CartPage";
 
 export default {
   components: {
